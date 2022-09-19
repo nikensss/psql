@@ -26,3 +26,17 @@ SELECT * FROM person WHERE email LIKE '____@gmail%';
 
 SELECT * FROM person WHERE email ILIKE '____@gmail%'; -- case insensitive
 
+SELECT MAX(price) FROM car;
+SELECT MIN(price) FROM car;
+SELECT AVG(price) FROM car;
+SELECT ROUND(MAX(price)) FROM car;
+
+SELECT COUNT(*), make, model 
+FROM car 
+GROUP BY make, model 
+ORDER BY COUNT(*) DESC;
+
+SELECT make, SUM(price) total 
+FROM car 
+GROUP BY make 
+ORDER BY total DESC;
