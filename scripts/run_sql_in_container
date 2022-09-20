@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-FILE=$1
-TARGET='docker-entrypoint-initdb.d/command.sql'
-
-docker cp $1 my-postgres:/$TARGET
-docker exec -u postgres my-postgres psql test postgres -f $TARGET
