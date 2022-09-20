@@ -1,12 +1,22 @@
 CREATE TABLE person (
   id BIGSERIAL NOT NULL PRIMARY KEY,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	email VARCHAR(50),
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(50), -- UNIQUE 
 	gender VARCHAR(50),
-	date_of_birth DATE,
-	country_of_birth VARCHAR(50)
+	date_of_birth DATE NOT NULL, 
+	country_of_birth VARCHAR(50) NOT NULL
 );
+
+ALTER TABLE person ADD CONSTRAINT unique_email_address UNIQUE (email);
+ALTER TABLE person DROP CONSTRAINT unique_email_address;
+
+-- this second approach lets Postgres decide the name of the constrain for us
+ALTER TABLE person ADD UNIQUE (email);
+
+-- ALTER TABLE person ADD CONSTRAINT gender_check CHECK (gender = 'Female' OR gender = 'Male');
+ALTER TABLE person ADD CONSTRAINT gender_check CHECK (gender in ('Male', 'Female', 'Agender'));
+ALTER TABLE person DROP CONSTRAINT gender_check;
 
 INSERT INTO person (first_name, last_name, email, gender, date_of_birth, country_of_birth) VALUES ('Alleen', 'Fillan', 'afillan0@youku.com', 'Female', '1936-04-23', 'China');
 INSERT INTO person (first_name, last_name, email, gender, date_of_birth, country_of_birth) VALUES ('Jessa', 'Fitzroy', 'jfitzroy1@unicef.org', 'Female', '1932-10-30', 'Malaysia');
