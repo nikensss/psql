@@ -2,10 +2,11 @@ CREATE TABLE person (
   id BIGSERIAL NOT NULL PRIMARY KEY,
 	first_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
-	email VARCHAR(50), -- UNIQUE 
 	gender VARCHAR(50),
+	email VARCHAR(50), -- UNIQUE 
 	date_of_birth DATE NOT NULL, 
-	country_of_birth VARCHAR(50) NOT NULL
+	country_of_birth VARCHAR(50) NOT NULL,
+	-- car_id BIGINT REFERENCES car (id) UNIQUE
 );
 
 ALTER TABLE person ADD CONSTRAINT unique_email_address UNIQUE (email);
